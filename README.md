@@ -1,37 +1,35 @@
-# duckdns
-Instead of using cronjobs and/or any other loop script, let us use Systemd timers to update our domains at DuckDNS. The default Systemd timers are set on every 5 minutes, you can change this yourself
+# ncDDNS 
+Fork of [Tom Stroobants's DuckDNS repo](https://github.com/T00mm/duckdns) edited for use with Namecheap's DDNS service. Uses a systemd timer with a 5 minute interval.
 
 ## Installation
-
-### Arch/AUR
-info coming soon, probably will be packaged under the name [duckdns](https://aur.archlinux.org/packages/?O=0&K=duckdns)
-
-### Other Linux distro's
 
 Execute these comments
 
 Clone/download this repo on your computer
 
-	mv duckdns.sh /usr/bin/duckdns
-	chmod +x /usr/bin/duckdns
-	mv duckdns.service /usr/lib/systemd/system/
-	mv duckdns.timer /usr/lib/systemd/system/
+	mv ncddns.sh /usr/bin/ncddns
+	chmod +x /usr/bin/ncddns
+	mv ncddns.service /usr/lib/systemd/system/
+	mv ncddns.timer /usr/lib/systemd/system/
 	
-	mkdir -p /etc/duckdns.d
-	mv default.cfg /etc/duckdns.d/
+	mkdir -p /etc/ncddns.d
+	mv default.cfg /etc/ncddns.d/
 	
-	systemctl enable duckdns.timer
-	systemctl start duckdns.timer
+	systemctl enable ncddns.timer
+	systemctl start ncddns.timer
 
 
-### Configuration
+## Configuration
 
-the **default.cfg** file shows perfectly what options you must enter, you can create new files if you have multiple domains with the same setup.
+Enter the necessary information in the **default.cfg** file. You can create new files if you have multiple domains with the same setup.
 
-	duckdns_hostname=
-	duckdns_token=
+	host=
+	domain=
+	password=
 
-Nothing more is needed.
+* host: the host to update (ex www)
+* domain: the domain to update (ex namecheap.com)
+* password: the DDNS password to use (NOT your Namecheap account password)
 
-Config files must be placed inside the `/etc/duckdns.d`  folder
+Config files must be placed inside the `/etc/ncddns.d`  folder
 

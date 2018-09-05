@@ -1,0 +1,6 @@
+[Unit]
+Description=Namecheap DDNS update job
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ncddns
